@@ -160,6 +160,7 @@ go_gapic_assembly_pkg(
     deps = [
         ":secretmanager_go_gapic",
         ":secretmanager_go_gapic_srcjar-metadata.srcjar",
+        ":secretmanager_go_gapic_srcjar-snippets.srcjar",
         ":secretmanager_go_gapic_srcjar-test.srcjar",
         ":secretmanager_go_proto",
     ],
@@ -237,6 +238,7 @@ php_gapic_library(
     rest_numeric_enums = True,
     service_yaml = "secretmanager_v1.yaml",
     transport = "grpc+rest",
+    migration_mode = "MIGRATING",
     deps = [
         ":secretmanager_php_grpc",
         ":secretmanager_php_proto",

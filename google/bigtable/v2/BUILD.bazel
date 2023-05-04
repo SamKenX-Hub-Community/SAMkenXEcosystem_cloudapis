@@ -45,6 +45,7 @@ proto_library(
     srcs = [
         "bigtable.proto",
         "data.proto",
+        "feature_flags.proto",
         "request_stats.proto",
         "response_params.proto",
     ],
@@ -153,6 +154,7 @@ go_gapic_assembly_pkg(
     name = "gapi-cloud-bigtable-v2-go",
     deps = [
         ":bigtable_go_gapic",
+        ":bigtable_go_gapic_srcjar-snippets.srcjar",
         ":bigtable_go_gapic_srcjar-test.srcjar",
         ":bigtable_go_proto",
     ],

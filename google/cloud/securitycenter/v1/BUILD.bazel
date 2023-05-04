@@ -24,6 +24,8 @@ proto_library(
         "access.proto",
         "asset.proto",
         "bigquery_export.proto",
+        "cloud_dlp_data_profile.proto",
+        "cloud_dlp_inspection.proto",
         "compliance.proto",
         "connection.proto",
         "contact_details.proto",
@@ -202,6 +204,7 @@ go_gapic_assembly_pkg(
     deps = [
         ":securitycenter_go_gapic",
         ":securitycenter_go_gapic_srcjar-metadata.srcjar",
+        ":securitycenter_go_gapic_srcjar-snippets.srcjar",
         ":securitycenter_go_gapic_srcjar-test.srcjar",
         ":securitycenter_go_proto",
     ],
