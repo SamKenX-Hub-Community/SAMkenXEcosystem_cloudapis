@@ -30,7 +30,7 @@ option objc_class_prefix = "CFED";
 // Describes a vehicle attribute as a key-value pair. The "key:value" string
 // length cannot exceed 256 characters.
 message DeliveryVehicleAttribute {
-  // The attribute's key. Keys may not contain the colon character (:).
+  // The attribute's key.
   string key = 1;
 
   // The attribute's value.
@@ -160,10 +160,23 @@ enum DeliveryVehicleLocationSensor {
   // Cell tower ID or WiFi access point.
   PASSIVE = 3;
 
-  // A location signal snapped to the best road position.
+  // A location determined by the mobile device to be the most likely
+  // road position.
   ROAD_SNAPPED_LOCATION_PROVIDER = 4;
 
-  // The fused location provider in Google Play services.
+  // A customer-supplied location from an independent source.  Typically, this
+  // value is used for a location provided from sources other than the mobile
+  // device running Driver SDK.  If the original source is described by one of
+  // the other enum values, use that value. Locations marked
+  // CUSTOMER_SUPPLIED_LOCATION are typically provided via a DeliveryVehicle's
+  // `last_location.supplemental_location_sensor`.
+  CUSTOMER_SUPPLIED_LOCATION = 5;
+
+  // A location calculated by Fleet Engine based on the signals available to it.
+  // Output only. This value will be rejected if it is received in a request.
+  FLEET_ENGINE_LOCATION = 6;
+
+  // Android's Fused Location Provider.
   FUSED_LOCATION_PROVIDER = 100;
 
   // The location provider on Apple operating systems.
@@ -198,4 +211,24 @@ message TimeWindow {
   // Required. The end time of the time window (inclusive).
   google.protobuf.Timestamp end_time = 2
       [(google.api.field_behavior) = REQUIRED];
+}
+
+// Describes a task attribute as a key-value pair. The "key:value" string length
+// cannot exceed 256 characters.
+message TaskAttribute {
+  // The attribute's key. Keys may not contain the colon character (:).
+  string key = 1;
+
+  // The attribute's value, can be in string, bool, or double type. If none are
+  // set the TaskAttribute string_value will be stored as the empty string "".
+  oneof task_attribute_value {
+    // String typed attribute value.
+    string string_value = 2;
+
+    // Boolean typed attribute value.
+    bool bool_value = 3;
+
+    // Double typed attribute value.
+    double number_value = 4;
+  }
 }
